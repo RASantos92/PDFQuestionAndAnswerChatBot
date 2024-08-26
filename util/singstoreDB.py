@@ -8,8 +8,8 @@ load_dotenv()
 
 class SSDBUtil:
     @staticmethod
-    def add_pfd_to_db(file_path):
-        loader = PyPDFLoader(file_path)
+    def add_pfd_to_db(file_name):
+        loader = PyPDFLoader(f"../data/pdf/{file_name}")
         docs = loader.load()
         # print(len(docs))
         # print(docs[0].page_content)
