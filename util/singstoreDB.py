@@ -11,12 +11,8 @@ class SSDBUtil:
     def add_pfd_to_db(file_name):
         loader = PyPDFLoader(f"../data/pdf/{file_name}")
         docs = loader.load()
-        # print(len(docs))
-        # print(docs[0].page_content)
-        # print(docs[0].metadata)
         text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
         splits = text_splitter.split_documents(docs)
-        # print(splits)
         embeddings = OpenAIEmbeddings(api_key=os.getenv("GPT_API_KEY"))
         docsearch = SingleStoreDB.from_documents(splits, embeddings, table_name='pdf_documents')
         return docsearch
